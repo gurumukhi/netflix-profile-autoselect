@@ -1,15 +1,9 @@
-// Put all the javascript code here, that you want to execute after page load.
-
-// https://www.netflix.com/browse
-
-try {
+let storageItem = browser.storage.local.get();
+storageItem.then((result) => {
+    const profileToSelect = result.netflixDefaultProfile;
     if (document.querySelector('ul.choose-profile')) {
-        let profileToSelect = ''; //window.autoSelectProfileName;
-
         if (!profileToSelect) {
-            // choose first profile
             document.querySelector('ul.choose-profile').children[0].querySelector('.profile-link').click();
-            alert('selected');
         } else {
             profiles = document.querySelector('ul.choose-profile').children;
             for (i=0; i<profiles.length; i++) {
@@ -20,11 +14,12 @@ try {
                 }
             }
             if (i === profiles.length) {
-                console.warn('Profile name didnt found');
+                console.warn('Profile name given in netflix profile add-on was not found. Selecting first profile.');
+                document.querySelector('ul.choose-profile').children[0].querySelector('.profile-link').click();
             }
         }
     }
-}
-catch (error) {
-    console.warn(error);
-}
+}).catch((error) => {
+    console.warn('Selecting first profile as Netflix profile add-on could not fetch your preference of profile because of following error - ' + error);
+    document.querySelector('ul.choose-profile').children[0].querySelector('.profile-link').click();
+});

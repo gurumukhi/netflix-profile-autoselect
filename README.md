@@ -1,7 +1,5 @@
-# netflix-profile-autoselect
+# Netflix Profile Selector
 
-Cross browser addon to auto selects profile on netflix
+Cross browser addon to auto select your prefered profile on Netflix.
 
-<hr/>
-
-Feature to select provided profile name to come soon. Right now the first profile is selected by default.
+https://addons.mozilla.org/en-US/firefox/addon/netflix-profile-autoselect/
